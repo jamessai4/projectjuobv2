@@ -4,7 +4,7 @@
       <v-list-item>
         <v-list-item-avatar>
           <v-img
-            src="https://scontent.fbkk5-5.fna.fbcdn.net/v/t1.0-9/p960x960/67165779_924918501182195_8338278503778615296_o.jpg?_nc_cat=104&_nc_sid=7aed08&_nc_eui2=AeG4pv15VgFEtGMTmWLax5N_KVNm7elwfeMpU2bt6XB94yqdz5ty9mGjVjei9krAkfBE3iho6En5oguKh8KYX1xO&_nc_ohc=P04GddKjYvYAX8xgegj&_nc_ht=scontent.fbkk5-5.fna&_nc_tp=6&oh=8e2472f44e6b27149001d676ff0dbe2f&oe=5F19A25B"
+            src="https://scontent.fbkk5-4.fna.fbcdn.net/v/t1.0-9/29694791_605743706433011_7002678869339103955_n.jpg?_nc_cat=103&_nc_sid=7aed08&_nc_eui2=AeEBaBYQLezK_2mE0xrn03YKY-P6gymAAG9j4_qDKYAAb6Wi3H4ePl_bl7EMCInE8-vaxLgb3ZKjMJcUYgTb_VNe&_nc_ohc=EbgLaK3OmrYAX-2zVSG&_nc_ht=scontent.fbkk5-4.fna&oh=aac9d1a54cb46be6b0a5c75107ae1eb3&oe=5F86D40B"
           />
         </v-list-item-avatar>
 
@@ -14,7 +14,6 @@
         </v-list-item-content>
       </v-list-item>
     </template>
-
     <v-divider></v-divider>
 
     <v-container>
@@ -24,7 +23,11 @@
 
     <v-list>
       <v-list-item-group v-model="selectedMenus" mandatory color="success">
-        <v-list-item v-for="([icon,title,route], index) in menus" :key="index">
+        <v-list-item
+          v-for="([icon, title, route], index) in menus"
+          :key="index"
+          @click="onClickMenu(route)"
+        >
           <v-list-item-icon>
             <v-icon>{{ icon}}</v-icon>
           </v-list-item-icon>
@@ -36,21 +39,6 @@
         <v-container>
           <v-divider></v-divider>
         </v-container>
-        
-        <v-container>
-          <v-icon>keyboard_arrow_down</v-icon>
-          <h0>การแจ้งเตือน</h0>
-        </v-container>
-
-        <v-list-item v-for="([icon,title,route], index) in menus1" :key="index">
-          <v-list-item-icon>
-            <v-icon>{{ icon}}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-tile-title>{{title}}</v-list-tile-title>
-          </v-list-item-content>
-        </v-list-item>
       </v-list-item-group>
     </v-list>
   </v-navigation-drawer>
@@ -58,22 +46,25 @@
 
 <script>
 export default {
+  methods: {
+    onClickMenu(link) {
+      this.$router.push(link).catch((err) => {});
+    },
+  },
+  mounted() {
+    this.selectedMenu = this.menus.findIndex(
+      (menu) => menu[2] == this.$route.path
+    );
+  },
   data() {
     return {
       selectedMenu: 0,
       menus: [
-        ["mode_comment", "ประวัติ", "/stock"],
-        ["where_to_vote", " ที่อยู่", "/report"],
-        ["lock", "รหัสผ่าน", "/about"],
-        ["shopping_cart", "การซื้อของฉัน", "/about"]
+        ["comment", "จัดการ Chat Bot", "/manage"],
+        ["question_answer", "ประวัติการสอบถาม", "/Register"],
       ],
-      menus1: [
-        ["store_mall_directory", "อัพเดตการซื้อ", "/stock"],
-        ["receipt", "โปรโมชั่น", "/stock"],
-        ["settings", "ระบบ", "/stock"]
-      ]
     };
-  }
+  },
 };
 </script>
 

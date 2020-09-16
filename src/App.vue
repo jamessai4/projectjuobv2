@@ -11,6 +11,7 @@
 import Header from "@/components/core/Header"
 import Menu from "@/components/core/Menu"
 import Content from "@/components/core/Content"
+
 export default {
   name: "App",
   components:{
@@ -21,6 +22,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -1,21 +1,17 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Login from '../views/Login.vue';
+import Manage from '../views/Manage.vue';
 import Register from '@/views/Register.vue';
-import Report from '@/views/Report.vue';
-import Stock from '@/views/Stock.vue';
-import StockCreate from '@/views/StockCreate.vue';
-import StockEdit from '@/views/StockEdit.vue';
-import About from '@/views/About.vue';
+import Edit from '@/views/Edit.vue';
+import View from '@/views/View.vue';
 
-
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/login",
-    name: "login",
-    component: Login
+    path: "/manage",
+    name: "manage",
+    component: Manage
   },
   {
     path: "/register",
@@ -23,42 +19,22 @@ const routes = [
     component: Register
   },
   {
-    path: "/stock",
-    meta: { isSecured: true },
-    name: "stock",
-    component: Stock
+    path: "/view",
+    name: "view",
+    component: View
   },
   {
-    path: "/stock-create",
-    meta: { isSecured: true },
-    name: "stock-create",
-    component: StockCreate
+    path: "/edit",
+    name: "edit",
+    component: Edit
   },
-  {
-    path: "/stock-edit/:id",
-    meta: { isSecured: true },
-    name: "stock-edit",
-    component: StockEdit
-  },
-  {
-    path: "/report",
-    meta: { isSecured: true },
-    name: "report",
-    component: Report
-  },
-  {
-    path: "/about",
-    meta: { isSecured: false },
-    name: "about",
-    component: About
-  },
-  {
+ {
     path: "/",
-    redirect: "/login"
+    redirect: "/manage"
   },
-  {
+   {
     path: "*",
-    redirect: "/login" // page not found
+    redirect: "/manage" // page not found
   }
 ];
 

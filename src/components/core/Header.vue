@@ -3,8 +3,7 @@
     <v-app-bar color="green darken-1" app dense dark>
 
      
-
-      <v-toolbar-title> Ice - cream Project</v-toolbar-title>
+      <v-toolbar-title> Manage Chat Bot</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
